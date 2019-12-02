@@ -1,0 +1,89 @@
+<main id="devis">
+    <figure>
+        <img src="/www/img/illus_devis.jpg" alt="">
+    </figure>
+    
+    <h2>Devis simple, rapide et gratuit</h2>
+
+    <form>
+       <ul>
+            <li>
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date">  
+            </li>
+            <li>
+                <input type="checkbox" name="option" value="900" id="double">
+                <label for="double">2 photographes</label>
+            </li>
+            <li>
+                <input type="checkbox" name="option" value="250" data-filming="2" id="engagement">
+                <label for="engagement">Engagement</label>
+            </li>
+            <li>
+                <input type="checkbox" name="option" value="300" data-filming="3" id="preparations">
+                <label for="preparations">Preparations</label>   
+            </li>
+            <li>
+                <input type="checkbox" name="option" value="200" data-filming="1.5" id="mairie">
+                <label for="mairie">Mairie</label>   
+            </li>
+            <li>
+                <input type="checkbox" name="option" value="400" data-filming="4" id="ceremonies">
+                <label for="ceremonies">Céremonies</label>  
+            </li>
+            <li>
+                <input type="checkbox" name="option" value="350" data-filming="1.5" id="photoGroup">
+                <label for="photoGroup">Photo de groupes / vin d'honneur</label>
+            </li>
+            <li>
+                <input type="checkbox" name="option" value="300" data-filming="4" id="soiree">
+                <label for="soiree">Soirée (jusqu'à 22h)</label>   
+            </li>
+            <li>
+                <input type="checkbox" name="option" value="150" data-filming="1.5" id="pieceMontee">
+                <label for="pieceMontee">Piece montée (jusqu'à 2h)</label>
+            </li><br/>
+            <li>
+                <input type="checkbox" name="optionVideo" value="650" id="videoCourte">
+                <label for="videoCourte">Video courte</label>   
+            </li>
+            <li>
+                <input type="checkbox" name="optionVideo" value="0" data-combinesHoursVideo="0" id="videoLongue" disabled="disabled">
+                <label for="videoLongue" class="opacityMin">Video longue</label>
+            </li>
+       </ul>
+    </form><br/>
+    
+   <section>
+        <h6 class="visually-hidden">calcule devis</h6>
+        <ul>
+            <li class="invisibility">
+                Tarif HT avant remise : 
+                <span id="affHCAvRemise"></span>
+            </li>
+            <li>
+                <button class="btn" id="applyPromo"><i class="fas fa-check"></i></button>
+                <input type="text" id="codePromo" class="floatLeft" placeholder="Code promo">
+                <p class="messValidation invisibility clear">Un reminse de <span id="tauxRemise"></span> % a bien été appliquée</p>
+            </li>
+            <li class="clear">
+                Tarif HT : <span id="affHC"></span>
+            </li>
+            <li>
+                Charge 23% : 
+                <span id="affCharge"></span>
+            </li>
+            <li>
+                Total TTC : 
+                <span id="affTotal"></span>
+            </li>
+        </ul>
+        <br/>
+        <ul>
+            <li>* Frais de fonctionnement a ajouter : </li>
+            <li> - 50€ pour paris</li>
+            <li> - autre lieu a préciser</li>
+        </ul>
+    </section>
+    
+</main>

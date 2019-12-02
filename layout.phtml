@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="/www/css/normalize.css" media="screen" />
+		<link rel="shortcut icon" type="image/x-icon" href="icon_head.ico">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+		
+		<link href="https://fonts.googleapis.com/css?family=Lato:300%7CPermanent+Marker" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Courgette|Poppins" rel="stylesheet">
+		
+		<link rel="stylesheet" type="text/css" href="/www/css/style.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/www/css/index.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/www/css/modal.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/www/css/galerie.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/www/css/faq.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/www/css/devis.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/www/css/contact.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/www/css/gestionComptes.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/www/css/monEspace.css" media="screen" />
+
+		<link rel="stylesheet" type="text/css" href="/www/css/modal.css" media="screen" />
+
+        <title>Photographes de mariage</title>
+	</head>
+	<body>
+        <noscript>
+            <p>Pour pouvoir accéder à ce site vous devez activer le javascript.</p>
+        </noscript>
+        <div id="container" style="display:none">
+      
+            <?php if(isset($_SESSION['identite']) and !empty($_SESSION['identite'])) var_dump($_SESSION['identite']);  ?> 
+        
+            <header id="top">
+                <h1><a href="../">Photographes de Mariage</a></h1>
+                <h2>PARIS</h2>
+                <h3 class="flex"><span class="no-rwap">Dimitri Foucault</span> <span class="big">&nbsp; &amp; &nbsp;</span> <span class="no-rwap">Boris Viurst</span></h3>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="/CONTROLLER/redirection.php?page=index">Accueil</a></li>
+                        <li><a href="<?php echo isset($_SESSION['admin']) ? "/CONTROLLER/galerie.php#admin" : "/CONTROLLER/galerie.php"; ?>">Galerie</a></li>
+                        <li><a href="/CONTROLLER/redirection.php?page=faq">Faq</a></li>
+                        <li><a href="/CONTROLLER/redirection.php?page=devis">Devis</a></li>
+                        <li><a href="/CONTROLLER/redirection.php?page=contact">Contact</a></li>
+                        <li>
+                        <a  id="link_loginUser" 
+                            <?php 
+                                    if (isset($_SESSION['user']) AND !empty($_SESSION['user'])){
+                                        echo 'href="/CONTROLLER/redirection.php?page=monEspace"' ;
+                                    }elseif(isset($_SESSION['admin']) AND !empty($_SESSION['admin'])){
+                                        echo 'href="/CONTROLLER/gestionAdmin.php"';
+                                    }else{
+                                        echo 'href="#"';    
+                                    }
+                                ?> 
+                            >
+                                <?php 
+                                    if (isset($_SESSION['user']) AND !empty($_SESSION['user'])){
+                                        echo 'Mon espace' ;
+                                    }elseif(isset($_SESSION['admin']) AND !empty($_SESSION['admin'])){
+                                        echo 'Admin';
+                                    }else{
+                                        echo 'Connexion';    
+                                    }
+                                ?>
+                            </a>
+                        </li>                        
+                    </ul>
+                </nav>
+            
+                <div id="icon-nav" class="is_closed">
+                        <span></span>
+                    </div>
+                    <hr> 
+            </header>
+
+            <div id="modal_loginUser" class="close">
+                <div class="modal_content">
+                <div class="modal_header customer">
+                        <button id="accessLoginAdmin" class="customer"><i class="fas fa-lock"></i></button>
+                        <span id='close_modal'>&times;</span>
+                        <h3>LOGIN</h3> 
+                    </div>
+                    <div class="modal_body">
+                        <p id="msgIndicationLogin">Un identifiant et un mot de passe vous a été fourni uniquement si vous êtes déjà client.</p>
+                        <p id="mess_error_login" class="invisibility" >Identifiant ou mot de passe incorrect</p>
+                        <form id="formLogin" data-traitement="/CONTROLLER/connectUser.php">
+                            <ul>
+                                <li><input type="text" id="pseudo" name="pseudo" placeholder="Identifiant"></li>
+                                <li><input type="password" id="mdp" name="mdp" placeholder="Mot de passe"></li>
+                            </ul>
+                            <button type='submit' name="submit" id="submitLogin" class="btn">Valider</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <?php include ( $template .'.phtml'); ?>  
+                
+            <p id="back-top">
+                <a href="#top"><span></span>Haut de page</a>
+            </p>
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+            
+            <script src="/www/js/main.js"></script>
+            <script src="/www/js/arrowNav.js"></script>
+            <script src="/www/js/iconNav.js"></script>
+            <script src="/www/AJAX/gestionLogin.js"></script>
+            <script src="/www/js/modal.js"></script>
+            <script src="/www/js/gestionComtes.js"></script>
+            <script src="/www/js/devis.js"></script>
+            <script src="/www/js/faq.js"></script>
+            <script src="/www/js/gallery.js"></script>
+        </div>
+	</body>
+</html>

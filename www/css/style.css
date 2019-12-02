@@ -1,0 +1,506 @@
+/*
+================= FONT =====================
+
+title = font-family: 'Permanent Marker', cursive;
+        font-weight: 900
+text = font-family: 'Lato', sans-serif;
+        font-weight: 300
+
+titre 2 :font-family: 'Merienda One', cursive;
+titre 3 : font-family: 'Courgette', cursive;
+txt 2 : font-family: 'Poppins', sans-serif;
+
+
+================ COLOR ====================
+
+gris claire (nom photographe) : #c5d3e4   /  rgb(197, 211, 228)
+gris plus foncé text : #838ea2  / 
+gris encore plus foncé : #6E788A
+rose : #ff71ad   / rgb(255, 113, 173)
+rose bcp plus clair : #FCD7E7 (pour le fond des inputs)
+
+
+*/
+
+
+/*=============== GLOBAL ====================*/
+*{
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+     
+    --theme1 : #ff71ad;  
+    --theme2 : #838ea2;  
+
+}
+
+html {
+    font-size : 62.5%;
+}
+
+body {
+    margin : 0;
+    padding : 0 0 80px;
+    overflow-x: hidden;
+    
+    font-family: 'Poppins', sans-serif;
+    font-size : 1.6rem;
+
+    color : var(--theme2);
+}
+
+h1, h2 {
+    font-family: 'Courgette', cursive;
+    color : var(--theme1);
+}
+
+ol, ul, li{
+    margin : 0;
+    padding : 0;
+    
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+noscript p{
+    margin : 0;
+    padding : 2rem;
+
+    text-align: center;
+
+    color : black;
+    font-size : 2rem;
+    background-color : red;
+}
+
+/*================ HEADER ===================*/
+
+header {
+    padding : 40px 0 20px;
+}
+
+header a {
+    text-decoration: none;
+    color : #ff71ad;
+}
+
+header h1, header h3 ,header h1 ~ h2 {
+    margin : 0 auto;
+    
+    text-align : center;
+}
+
+
+header h1 ~ h2 {
+    font-family : 'Lato', sans-serif;
+    font-size: 1rem; 
+    font-variant: small-caps;
+    color : #c5d3e4;
+}
+
+header h3 {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-top : 4rem;
+    
+    letter-spacing: .2rem;
+    color : #c5d3e4;
+}
+
+header .big {
+    font-size : 2.3rem;
+    font-style : italic;
+    color : #ff71ad;
+}
+
+#icon-nav {
+    position : fixed;
+    top : 10px;
+    right: 10px;
+    width : 40px;
+    height : 40px;
+    
+    border-radius : 50px;
+    
+    background-color : black;
+    
+    cursor : pointer;
+    z-index: 2;
+}
+
+#icon-nav span {
+    position : absolute;
+    width : 17px;
+    height : 2px;
+    top : 50%;
+    right : 50%;
+    
+    background-color : white;
+    
+    -webkit-transform : translate(50%, -50%);   
+        -ms-transform : translate(50%, -50%);   
+            transform : translate(50%, -50%);
+    -webkit-transition : .3s;
+    -o-transition : .3s;
+    transition : .3s;
+}
+
+#icon-nav span:before , #icon-nav span:after {
+    content : '';
+    position : absolute;
+    width : 17px;
+    height : 2px;
+    
+    background-color : white;
+    
+    -webkit-transition : .3s;   
+    -o-transition : .3s;   
+    transition : .3s;
+}
+
+#icon-nav span:before {
+    top : -7px;
+}
+
+#icon-nav span:after {
+    top : 7px;
+}
+
+#icon-nav.is_opened span {
+    background-color : rgba(0,0,0,0);
+}
+
+#icon-nav.is_opened span:before {
+    top : 0;
+    -webkit-transform : rotate(45deg);
+        -ms-transform : rotate(45deg);
+            transform : rotate(45deg);
+}
+
+#icon-nav.is_opened span:after {
+    top : 0;
+    -webkit-transform : rotate(135deg);
+        -ms-transform : rotate(135deg);
+            transform : rotate(135deg);
+}
+
+#nav {
+    position : fixed;
+    top : 0;
+    right : 0px;
+    width : 280px;
+    margin : 0;
+    padding : 30px 30px 20px 15px;
+    
+    background-color : pink;
+    
+    -webkit-transform: translateX(350px);   
+        -ms-transform: translateX(350px);   
+            transform: translateX(350px);
+    -webkit-transition : -webkit-transform .3s;
+    transition : -webkit-transform .3s;
+    -o-transition : transform .3s;
+    transition : transform .3s;
+    transition : transform .3s, -webkit-transform .3s;
+    
+    z-index :1;
+}
+
+#nav li a {
+    display : inline-block;
+    position : relative;
+    overflow: hidden;
+    
+    text-decoration: none;
+    line-height: 4rem;
+    text-align : left;
+    text-transform: capitalize;
+    font-size : 1.6rem;
+    color : white;
+}
+
+#nav.opened {
+    -webkit-transform : translateX(-0px);
+        -ms-transform : translateX(-0px);
+            transform : translateX(-0px);
+}
+
+hr {
+    display : block;
+    width : 90%;
+    max-width : 1215px;
+    height : 2px;
+    margin : 15px auto 30px;
+    
+    border : none;
+    
+    background-color : #ff71ad; 
+}
+
+@media screen and (min-width: 720px){
+
+    header h3 {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    }
+    
+    #nav {
+        position : static;
+        width : 90%;
+        max-width : 1100px;
+        padding :0;
+        margin : 45px auto 10px;
+        
+        background-color : transparent;
+        
+        -webkit-transform : translateX(0);      
+            -ms-transform : translateX(0);       
+                transform : translateX(0); 
+    }
+
+    #nav ul {
+        display : -webkit-box;
+        display : -ms-flexbox;
+        display : flex;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+    }
+
+    #nav li {
+        width : calc(100% / 5);
+        text-align : center;
+    }
+    #nav li a {
+        padding : 0 10px;
+        
+        letter-spacing: .1rem;
+        color : #ff71ad ;
+
+        -webkit-transition : .3s ease-out;
+        -o-transition : .3s ease-out;
+        transition : .3s ease-out;
+    }
+    
+    #nav li a:hover:after {
+        -webkit-transform: translate(0);
+            -ms-transform: translate(0);
+                transform: translate(0);
+    }
+    
+    #nav li:hover a {
+        padding-left : 10px;
+        text-shadow: none;
+        -webkit-transform : none;
+            -ms-transform : none;
+                transform : none;
+    }
+    
+    #icon-nav {
+        display : none;
+    }
+    
+    
+}
+/*================ MAIN GENERAL=====================*/
+
+main {
+    display : block; /* pour que la balise main soit interprété par IE*/
+    width : 90vw;
+    max-width : 1100px;
+    margin : 0 auto 100px;
+}
+
+/*==== lien : 'Haut de page =====*/
+
+#back-top {
+    position : fixed;
+    right : 5%;
+    bottom : 30px;
+}
+
+#back-top a {
+    display : block;
+    width : 70px;
+    
+    font-size : 1rem;
+    text-align : center;
+    text-transform : uppercase;
+    text-decoration : none;
+    color : #bbb;
+    
+    -webkit-transition : .7s;
+    -o-transition : .7s;
+    transition : .7s;
+}
+
+#back-top span {
+    display : block;
+    width : 70px;
+    height : 70px;
+    margin-bottom : 7px;
+    
+    border-radius : 15px;
+    
+    background : #ddd url(../img/haut2.png) no-repeat center center;
+    background-size : contain;
+    
+    -webkit-transition : .7s; 
+    -o-transition : .7s;
+    transition : .7s;
+}
+
+#back-top a:hover span {
+    background-color : #777;
+}
+
+
+/*============== formulaire ======================*/
+input:not([type='checkbox']), textarea, select  {
+    margin : 15px 0;
+    height : 4rem;
+    padding-left: 1rem;
+    
+    font-family: 'Poppins', sans-serif;
+    font-size : 1.6rem;
+    
+    width : 100%;
+    
+    border : 1px solid #6E788A;
+    border-radius : 30px;
+    
+    background-color: white;
+}
+
+form input {
+    display : block;
+}
+
+
+.btn, input[type='submit'] { 
+    display : block;
+    
+    margin : auto;
+    max-width: 300px;
+    padding : .2em 5rem;
+    
+    font-size : 1.2em;
+    color : var(--theme1);
+    font-family:'Poppins', sans-serif;
+    text-align: center;
+    
+    border : 1px solid var(--theme1);
+    border-radius: 200px;
+    
+    background : white;
+    
+    cursor: pointer;
+    -webkit-transition : background-color 1.5s, color .3s;
+    -o-transition : background-color 1.5s, color .3s;
+    transition : background-color 1.5s, color .3s;
+}
+
+.btn:hover, input[type='submit']:hover {
+    background-color : var(--theme1);
+    color : white;
+}
+/*=============== MAIN ERROR ==================*/
+
+main#erreur {
+    text-align: center;
+}
+
+main#erreur h1 {
+    font-size : 4rem;
+}
+
+main#erreur h2 {
+    font-size : 3rem;
+}
+
+/*================== FOOTER ===================*/
+
+
+/*================= CLASS ====================*/
+
+.flex {
+    display : -webkit-box;
+    display : -ms-flexbox;
+    display : flex;
+}
+
+.visually-hidden {
+    position : absolute;
+    clip : rect(0,0,0,0);
+    top : -1px;
+    font-size : 0px;
+}
+
+.invisibility {
+    visibility : hidden;
+}
+
+.hide {
+    display : none;
+}
+
+.show {
+    display : block;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.flou {
+    -webkit-filter : blur(5px);
+            filter : blur(5px);
+}
+
+.opacityMin {
+    opacity : .5;
+}
+
+.floatLeft {
+    float : left;
+}
+
+.floatRight {
+    float : right;
+}
+
+.clear {
+    clear : both;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

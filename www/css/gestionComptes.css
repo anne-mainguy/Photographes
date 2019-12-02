@@ -1,0 +1,497 @@
+#gestionComptes a {
+    text-decoration: none; 
+}
+
+#loginOut {
+    display : block; 
+    width : 15rem;
+    margin : 3rem auto;
+    padding : .7rem;
+    
+    text-align : center;
+    color : white;
+    
+    border-radius : 50px;
+    
+    background-color : #838ea2;
+    
+    -webkit-transition : .5s;    
+    -o-transition : .5s;    
+    transition : .5s;
+}
+
+#loginOut:hover, #loginOut:focus {
+    background-color : #ff71ad;
+}
+
+
+
+/*===== message confirmation suppression=====*/
+div.msg-form {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100vh;
+
+    text-align: center;
+    
+    cursor : wait;
+    z-index: 6;
+}
+
+div.msg-form h3{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width : 80%;
+    max-width: 400px;
+    line-height: 40px;
+    margin : 50vh 50%;
+    
+    font-style: italic;
+    color : #6E788A;
+    text-align: center;
+
+
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+    z-index : 5;
+}
+
+
+div.msg-form h3:before{
+    content : '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width : 120%;
+    height :180%;
+    
+    background : #EDEDED ;
+    -webkit-filter: blur(5px);
+            filter: blur(5px);
+    z-index : -1;
+}
+
+.msg-form.confirm h3::before {
+    background : white;
+    border : 8px solid #fa0a6e;
+}
+
+.msg-form.invalid h3::before {
+    background : rgb(252, 108, 108);
+    border : 8px solid rgb(240, 51, 51);
+}
+
+.msg-form.invalid h3 {
+    color : white;
+}
+
+
+/*============= section ==============*/
+
+#gestionComptes section {
+    margin: 60px auto;
+    max-width: 80vw;
+}
+
+#gestionComptes h2 {
+    position : relative;
+    height : 60px;
+    width : 104%;
+    left : -2%;
+    
+    color : #6E788A;
+    text-align: center;
+    line-height: 60px;
+    
+    -webkit-box-shadow: 0px 7px 7px rgba(0,0,0, .3);    
+            box-shadow: 0px 7px 7px rgba(0,0,0, .3);
+    
+    background-color : #ff71ad;
+    
+    cursor : pointer;
+}
+
+#gestionComptes h2:before ,
+#gestionComptes h2:after {
+    position : absolute;
+    content : '';
+    width : 0;
+    height : 0;
+    top : 7px;
+    
+    border-width : 30px 30px;
+    border-style : solid;
+    
+    opacity : .8;
+    
+    z-index : -1;
+}
+
+#gestionComptes h2:before {
+    right : 100%;
+    border-color : #ff71ad #ff71ad #ff71ad transparent;
+    -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+            transform: translateX(20px);
+}
+
+#gestionComptes h2:after {
+    left : 100%;
+    border-color : #ff71ad transparent #ff71ad #ff71ad;
+    -webkit-transform: translateX(-20px);
+        -ms-transform: translateX(-20px);
+            transform: translateX(-20px);
+}
+
+/*======= FORMULAIRES =======*/
+
+.customersExisting_form_ul , 
+.selectCustomer_form_ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.customersExisting_form_ul li , 
+.selectCustomer_form_ul li {
+    margin : 15px 15px 15px 15px;
+    
+    text-align: center;
+}
+
+#gestionComptes input, #gestionComptes textarea {      
+    color : #838ea2;
+    opacity: .5;
+    font-style : oblique;
+}
+
+#gestionComptes li{
+    position : relative;
+}
+
+#form_createCustomer input, #form_createCustomer textarea {
+    opacity: 1;
+    font-style : normal;
+}
+
+#gestionComptes input:disabled, #gestionComptes textarea:disabled {
+    opacity: 1;
+    font-style : normal;
+}
+
+#gestionComptes input:invalid{
+    -webkit-box-shadow : none;
+            box-shadow : none;
+    outline :0;
+}
+
+#gestionComptes input.invalid {
+    border : 2px solid rgba(255,0,0, .3);
+    background-color: rgba(255,0,0,.07);
+}
+
+#gestionComptes li.username, #gestionComptes li.username input {
+    background-color : #ff71ad;
+}
+
+#gestionComptes li.username {
+    margin : 0;
+    padding : 15px 0;
+}
+
+#gestionComptes li.username input {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size : 2rem;
+    font-weight: bold;
+}
+
+#gestionComptes li.username input:disabled {
+    color : #6E788A;
+}
+
+#gestionComptes li.firstname div { 
+    position : relative;
+}
+
+#gestionComptes span.et, 
+#gestionComptes span.et {
+    color : #ff71ad;
+}
+
+.customersExisting_form_ul label , 
+.selectCustomer_form_ul label{
+    font-weight: bold;
+}
+
+.customersExisting_form_ul input, .customersExisting_form_ul textarea, 
+.selectCustomer_form_ul input, .selectCustomer_form_ul textarea {
+    width : 100%;
+    margin : 0;
+    padding : 0;
+    height : 2rem;
+    
+    text-align: center;
+    
+    border : none;
+}
+
+.customersExisting_form_ul textarea, 
+.selectCustomer_form_ul textarea {
+    height : 10rem;
+    margin-top : 1.6rem;
+    
+    resize : none;
+}
+
+.customersExisting_form_ul input[type="email"], 
+.selectCustomer_form_ul input[type="email"] {
+    overflow-x : scroll;
+}
+
+.customersExisting_form_ul input[type="date"],
+.selectCustomer_form_ul input[type='date']{
+    width : auto;
+    margin : auto;
+}
+
+.noteCustomer {
+    height : 10rem;
+}
+
+.a_select a{
+    color : #ff71ad;
+}
+
+.a_select a:hover {
+    font-weight: bold;
+}
+
+.change-delete {
+    position : absolute;
+    bottom : 0;
+    left : 0;
+    right : 0;
+    height: 60px;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    
+    font-size : 2rem;
+    color : white;
+    
+    background-color : #838ea2;
+
+}
+
+.change-delete i.fas,
+.change-delete i.fas,
+.change-delete i.fas {
+    display : block;
+    color : white;
+    -webkit-transition : .2s;
+    -o-transition : .2s;
+    transition : .2s;
+}
+
+.change-delete i.fas.clickable:hover,
+.change-delete i.fas.clickable:focus,
+.change-delete i.fas.clickable:active{
+    -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+            transform: scale(1.2);
+    color : #ff71ad;
+}
+
+.change-delete i.fas:not(.clickable),
+.change-delete i.fas:not(.clickable),
+.change-delete i.fas:not(.clickable) {
+    opacity : .3;
+}
+
+.customersExisting_form , 
+.selectCustomer_form{
+    position: relative;
+    max-width: 336px;
+    min-width : 257px;
+    margin : 15px;
+    padding-bottom: 70px;
+    
+    text-align: center;
+    
+    border : 1px solid #838ea2;
+    border-radius : 15px;
+
+    overflow: hidden;
+}
+
+p.errorCheck {
+    margin: 5px auto;
+    
+    color:red;
+    font-size:10px;
+}
+
+/*====== formulaire d'affichage 3 derniers clients ============*/
+
+#customersExisting_content {
+    width : 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+/*====== formulaire recherche client ==============*/
+
+#selectCustomer .selectCustomer_form  {
+    margin : auto;
+}
+
+/*============== formulaire createCustomer =============*/
+
+
+#createCustomer {
+    width : 50%;
+    min-width: 230px;
+    margin : auto;
+    padding-top : 7px;
+    padding : 7px 0 7px;
+}
+
+
+#list_createCustomer {
+    width : 90%;
+    margin :  0 auto 7px;
+    
+}
+
+#createCustomer label {
+    display : none;
+}
+
+#list_createCustomer textarea {
+    height: 11rem;
+    padding: .9rem 2rem;
+
+    resize : none;
+}
+
+.select_file_couv, .select_file_facture {
+    display : block;
+    height : 4rem;
+    padding : .2rem 1rem; 
+    margin : 7px auto;
+    
+    font-family: 'Poppins', sans-serif;
+    line-height: 3.5rem;
+    text-align: center;
+    color : white;
+    
+    border : 2px solid black;
+    border-radius: 50px;
+    
+    background-color : black;
+    
+    cursor: pointer;
+}
+
+.select_file_couv:active , .select_file_facture:active{
+    color : black;
+    
+    background-color : #ff71ad;
+}
+
+#createCustomer .btn {
+    display : block;
+}
+
+.hidden_small {
+    display : none;
+}
+
+@media screen and (min-width: 970px){
+    .hidden_small {
+        display : inline;
+    }
+}
+
+.infobulle { 
+    position : relative;
+    
+}
+
+.infobulle:hover:after,
+.infobulle:focus:after {
+    content : attr(aria-label);
+    position : absolute;
+    top : -2.4rem;
+    left : 50%;
+    -webkit-transform : translateX(-50%);
+        -ms-transform : translateX(-50%);
+            transform : translateX(-50%);
+    z-index : 1;
+    white-space : nowrap;
+}
+
+span.obligatoir {
+    position : absolute;
+    top : 50%;
+    right : 1rem;
+    
+    color : red;
+    
+    -webkit-transform: translateY(-50%);   
+        -ms-transform: translateY(-50%);   
+            transform: translateY(-50%);
+}
+
+span.validate, .select_file_couv.validate, .select_file_facture.validate {
+    color : greenyellow;
+}
+
+.restriction{
+    margin: -5px 0 -15px;
+    
+    font-size : 1.2rem;
+    text-align: center;
+    color : red;
+}
+
+.input_link{
+    overflow-x:auto;
+}
+
+.input_link input{
+    min-width : 300%;
+    
+    text-align: left;
+}
+
+.input_modif {
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+

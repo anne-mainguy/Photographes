@@ -1,0 +1,37 @@
+#faq figure {
+    margin : 0 auto 60px;
+    
+    text-align : center;
+}
+
+#faq h2 {
+    font-size : 2rem;
+}
+
+#faq section {
+    margin : 0 10px 30px;
+}
+
+#faq section div {
+    margin : 0 10px 40px;
+}
+
+#faq p, #faq li{
+    letter-spacing : .1rem;
+    word-spacing : .15rem;
+    color : #838ea2;
+}
+
+#faq section ul {
+    padding-left : 40px;
+}
+
+#faq section li {
+    position : relative;
+}
+
+#faq section li:before {
+    content : '▻';
+    position : absolute;
+    left : -20px;
+}

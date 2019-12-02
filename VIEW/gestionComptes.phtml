@@ -1,0 +1,287 @@
+<main id="gestionComptes">
+    <div class="msg confirmation_change hide">
+        <h3>La fiche a bien été modifié.</h3>
+    </div>
+    <div class="msg invalid_change hide">
+        <h3>Impossible d'effectuer la modification.</h3>
+    </div>
+    <div class="msg confirm_deletion hide">
+        <h3>Le client a bien été supprimé.</h3>
+    </div>
+    <div class="msg invalid_deletion hide">
+        <h3>Impossible de supprimer ce client.</h3>
+    </div>
+    <div class="msg-form hide">
+        <h3></h3>
+    </div>
+    <?php
+
+    if(isset($_SESSION['admin']) and !empty($_SESSION['admin'])){ ?>
+        
+        <section id="customersExisting">
+            <h2 id="listUsers">Les 3 derniers clients</h2>
+            <div id="customersExisting_content" class="flex hide">
+            <?php foreach($users as $user): ?>
+                <form method="POST" action="/www/AJAX/changeUser.AJAX.php" class="customersExisting_form" enctype="multipart/form-data" data-iduser="<?= ($user['ID']) ?>">
+                    <input type="hidden" name="idCustomer" value="<?= ($user['ID']) ?>">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
+
+                    <ul class="flex customersExisting_form_ul">
+                        <li class="username">
+                            <input type="text" name="identifiant" class="username" data-original="<?= $user['Identifying'] ?>" value="<?= $user['Identifying'] ?>" required="required" disabled='disabled'>
+                            <span class="obligatoir invisibility ">*</span>
+                        </li>
+                        <li class="firstname">
+                            <div>
+                                <input type="text" name="firstName1" value="<?= ucfirst($user['FirstName1']) ?>" required="required" placeholder="Prénom 1" disabled='disabled'>
+                                <span class="obligatoir invisibility ">*</span>
+                            </div>
+                            <span class="et"> &amp; </span>
+                            <div>
+                                <input type="text" name="firstName2" value="<?= ucfirst($user['FirstName2']) ?>" required="required" placeholder="Prénom 2" disabled='disabled'>
+                                <span class="obligatoir invisibility ">*</span>    
+                            </div>
+                        </li>
+                        <li>
+                            <input type="email" name="email" value="<?= $user['Email'] ?>" required="required" placeholder="Email" disabled='disabled'>
+                            <span class="obligatoir invisibility ">*</span>
+                        </li>
+                        <p class="restriction hide"> ex : 06 76 11 39 47</p>
+                        <li>
+                            <input type="tel" name="phone" class="contraint" <?php echo ($user['Phone'] != NULL)? 'value="' . wordwrap($user['Phone'],2, " " ,1) . '"' : 'placeholder="Aucun telephone"'; ?> title="Saisie d'un télèphone exemple : 06 76 11 39 47" placeholder="06 76 11 39 47" disabled='disabled'>
+                        </li>
+                        <li>
+                            <input type="date" name="weddingDate" value="<?= $user['WeddingDate'] ?>" title="Format de date : jour/mois/année" required="required" disabled='disabled'>
+                            <span class="obligatoir invisibility ">*</span>
+                        </li>
+                        <li>
+                            <div class="a_select">
+                                <a href="<?= $user['Link'] ?>" target='blank'>Lien vers DropBox</a>
+                            </div>
+                            <div class="input_modif hide">
+                                <input type="text" name="link" value="<?= $user['Link'] ?>" placeholder="Lien de téléchargement" title="Seul les liens dropbox sont autorisés" disabled='disabled'>
+                                <span class="obligatoir invisibility ">*</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="a_select">
+                                <a href="<?= $user['ImageCouv'] ?>" target="blank">Voir l'image</a>
+                            </div>
+                            <div class="input_modif hide">
+                                <input type="file" name="imageCouv" class="input_image visually-hidden" required="required" accept=".jpg ,.jpeg, .gif, .png">
+                                <span class="btnUploadDocumentNewAccount select_file_couv">
+                                    COUVERTURE
+                                    <span class="obligatoir invisibility ">*</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                           <div class="a_select ">
+                                <a href="<?= $user['Facture'] ?>" target="blank">Voir la facture</a>
+                            </div>
+                            <div class="input_modif hide">
+                                <input type="file" name="facture" class="input_facture visually-hidden" accept=".pdf">
+                                <span class="btnUploadDocumentNewAccount select_file_facture">
+                                    FACTURE
+                                    <span class="obligatoir invisibility">*</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <label>Note client</label>
+                            <p <?= ($user['NoteCustomer'] != NULL)? ">" . $user['NoteCustomer'] : 'style="color:#bbb" >Pas de commentaire client' ?></p>
+                            
+                        </li>
+                        <li>
+                            <label for="noteadmin">Note admin</label>
+                            <textarea name="noteAdmin" disabled='disabled' placeholder="Pas de commentaire admin"><?php echo $user['NoteAdmin'] != NULL? $user['NoteAdmin'] : '' ?></textarea>
+                        </li>
+                    </ul>
+                    
+                    <div class="change-delete flex">
+                        <i class="fas fa-trash-alt clickable del_user"></i><i class="fas fa-pencil-alt clickable change_user"></i><i class="fas fa-check validate_change"></i>
+                    </div>
+                </form>
+                <?php endforeach ; ?>
+            </div>
+        </section>
+
+        <section id="selectCustomer" >
+            <h2>Selectionner un client</h2>
+            <div id="selectCustomer_content" class="hide">
+                <form method="" action="../../chageUser.php" id="selectCustomer_form_select">
+                    <ul>
+                       <li>
+                           <input type="text" list="datalist_select_identifiant" id="input_list_select_identifiant" name="select_identifiant" placeholder="Identifiant" class="input_select identifiant">
+                           <datalist id="datalist_select_identifiant">
+                                <select id="searchByIdentifiant" name="searchByIdentifiant">
+                                    <?php foreach($allIdUsersIdentifiant as $userIdIdentifiant) : ?>                                   
+                                    <option value="<?= ucfirst($userIdIdentifiant['Identifying']) ?>" data-id="<?=$userIdIdentifiant['ID'] ?>">
+
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </datalist>
+                           <span>ou</span>
+                       </li>
+                        <li>
+                           <input type="text" list="datalist_select_weddingDate" name="select_weddingDate" id="input_list_select_weddingDate" placeholder="aaaa/mm/jj" class="input_select weddingDate">
+                           <datalist id="datalist_select_weddingDate">
+                                <select id="searchByWeddingDade" name="searchByWeddingDade">
+                                    <?php foreach($allIdUsersDate as $userIdDate) : ?>
+                                    <option value="<?= $userIdDate['WeddingDateFR'] ?>" data-id="<?= $userIdDate['ID'] ?>"></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </datalist>
+                        </li>
+                    </ul>
+                </form>   
+
+                <div id="display_form_select">
+                    <form id="form_selectCustomer" class="selectCustomer_form" method="POST" action="/www/AJAX/changeUser.AJAX.php" enctype="multipart/form-data" data-iduser="">
+                        <input type="hidden" name="idCustomer" id="selectId" value="">                      
+                       <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
+
+                        <ul class="flex customersExisting_form_ul">
+                            <li class="username">
+                                <input id="selectUsername" type="text" name="identifiant" class="username"disabled='disabled' required="required" >
+                                <span class="obligatoir invisibility">*</span>
+                            </li>
+                            <li class="firstname">
+                               <div>
+                                   <input id="selectFirstname1" type="text" name="firstName1"  required="required" placeholder="Prénom 1" disabled='disabled'>
+                                    <span class="obligatoir invisibility">*</span>
+                               </div>
+                                <span class="et"> &amp; </span>
+                                <div>
+                                    <input id="selectFirstname2" type="text" name="firstName2"  required="required" placeholder="Prénom 2" disabled='disabled'>
+                                    <span class="obligatoir invisibility">*</span>
+                                </div>
+                            </li>
+                            <li>
+                                <input id="selectEmail" id="Email" type="email" name="email"  required="required" placeholder="Email" disabled='disabled'><span class="obligatoir invisibility">*</span>
+                            </li>
+                            <p class="restriction hide"> ex : 06 76 11 39 47</p>
+                            <li>
+                                <input id="selectTel" class="contraint" type="tel" name="phone" title="Saisie d'un télèphone exemple : 06 76 11 39 47" placeholder="06 76 11 39 47" disabled='disabled'>
+                            </li>
+                            <li>
+                                <input id="selectDate" type="date" name="weddingDate" title="Format de date : jour/mois/année" required="required" disabled='disabled'><span class="obligatoir invisibility">*</span>
+                            </li>
+                            <li>
+                                <div class="a_select">
+                                    <a href="" id="a_selectLink" target="blank">Lien DropBox</a>
+                                </div>
+                                <div class="input_modif hide">
+                                    <input id="selectLink" type="text" name="link" title="Seul les liens dropbox sont autorisés" placeholder="Lien de téléchargement" disabled='disabled'><span class="obligatoir invisibility">*</span>    
+                                </div>
+                            </li>
+                            <li>
+                                <div class="a_select">
+                                    <a id="a_selectImage" href="" class="imageCouv" target="blank">Voir l'image</a>
+                                </div>
+                                <div class="input_modif hide">
+                                    <input id="input_selectImage" type="file" name="imageCouv" class="imageCouv input_image visually-hidden" required="required" accept=".jpg ,.jpeg, .gif, .png">
+                                    <span id="select_file_couv" class="btnUploadDocumentNewAccount select_file_couv">COUVERTURE<span class="obligatoir invisibility">*</span></span>
+                                </div>
+                            </li>
+                            <li>
+                               <div class="a_select ">
+                                    <a id="a_selectFacture" href="" class="facture" target="blank">Voir la facture</a>
+                                </div>
+                                <div class="input_modif hide">
+                                    <input id="input_selectFacture" type="file" name="facture" class="input_facture facture visually-hidden" accept=".pdf">
+                                    <span id="select_file_facture" class="btnUploadDocumentNewAccount select_file_facture">FACTURE<span class="obligatoir invisibility">*</span></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label>Note client</label>
+                                <p id="selectNoteUser" class="noteCustomer">Pas de commentaire client</p>
+                            </li>
+                            <li>
+                                <label for="noteadmin">Note admin</label>
+                                <textarea id="selectNoteAdmin" name="noteAdmin" disabled='disabled'>Pas de commentaire administrateur</textarea>
+                            </li>
+                        </ul>
+                        <div class="change-delete flex">
+                            <i class="fas fa-trash-alt clickable del_user"></i><i class="fas fa-pencil-alt clickable change_user"></i><i class="fas fa-check validate_change"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="createCustomer">
+            <h2>Créer un <span class="hidden_small">nouveau </span>client</h2>
+            <div class="hide">
+                <form id="form_createCustomer" class="createCustomer_form" method="POST" action="/www/AJAX/newCustomer.AJAX.php" enctype="multipart/form-data" >
+                    <input type="hidden" name="MAX_FILE_SIZE" value="1572864">
+
+                    <ul id="list_createCustomer">
+                        <li>
+                            <input type="text" name="identifiant" class="username" required="required" placeholder="Identifiant">
+                            <span class="obligatoir">*</span>
+                        </li>
+                        <li>
+                            <input id="FirstName1" type="text" name="firstName1" required="required" placeholder="Prénom 1">
+                            <span class="obligatoir">*</span>
+                        </li>
+                        <li>
+                            <input id="FirstName2" type="text" name="firstName2" required="required" placeholder="Prénom 2">
+                            <span class="obligatoir hidden">*</span>
+                        </li>
+                        <p class="restriction hide">De 8 a 11 caractéres</p>
+                        <li>
+                            <input id="Password" class="contraint" type="password" name="password" required="required" title="De 8 a 11 caractéres" placeholder="Mot de passe">
+                            <span class="obligatoir">*</span>
+                        </li>
+                        <li>
+                            <input id="Email" type="email" name="email" required="required" placeholder="Email">
+                            <span class="obligatoir">*</span>
+                        </li>
+                        <p class="restriction hide">ex : 06 76 11 39 47</p>
+                        <li>
+                            <input id="Phone" class="contraint" type="tel" name="phone" title="exemple de saisie valide pour le télèphone : 06 76 11 39 47" placeholder="06 76 11 39 47">
+                        </li>
+                        <li>
+                            <input id="WeddingDate" type="date" name="weddingDate"  required="required" title="Format valide de date : jour/année/mois/" placeholder="jj/mm/aaaa" >
+                            <span class="obligatoir">*</span>
+                        </li>
+                        <li>
+                            <input id="Link" type="url" name="link" required="required" title="Le lien doit etre un lien dropbox" placeholder="Lien de téléchargement">
+                            <span class="obligatoir">*</span>
+                        </li>
+                        <li>
+                            <input id="ImageCouv" type="file" name="imageCouv" class="input_image visually-hidden" required="required" accept=".jpg ,.jpeg, .gif, .png">
+                            <span id="select_file_couv" class="btnUploadDocumentNewAccount select_file_couv" title="Fichiers acceptés : jpg, jpeg, gif, png">
+                                COUVERTURE
+                                <span class="obligatoir">*</span>
+                            </span>
+                        </li>
+                        <li>
+                            <input id="Facture" type="file" name="facture" class="input_facture visually-hidden" required="required"  accept=".pdf">
+                            <span id="select_file_facture" class="btnUploadDocumentNewAccount select_file_facture" title="Fichier accepté : pdf">
+                                FACTURE
+                                <span class="obligatoir">*</span>
+                            </span>
+                        </li>
+                        <li>
+                            <textarea id="NoteAdmin" name="noteAdmin" placeholder="Note admin"></textarea>
+                        </li>
+                    </ul>
+                    <button  name="submit" class="btn">Valider</button>
+                </form>
+            </div>
+        </section>
+
+        <a id="loginOut" href="/CONTROLLER/loginOut.php">Déconnexion</a> 
+      <?php    
+    }
+    else {
+
+        header('Location: redirection.php?page=index');
+        exit;
+
+    }?>
+
+</main>

@@ -1,0 +1,14 @@
+<main id="espacePerso">
+   
+    <h3><?= ucfirst($_SESSION['user']['FirstName1']) ?><span> &amp; </span><?= ucfirst($_SESSION['user']['FirstName2']) ?></h3>
+    <h2><?= $_SESSION['user']['WeddingDate'] ?></h2>
+    <figure>
+        <img src="<?php echo $_SESSION['user']['ImageCouv']; ?>" alt="<?php echo ($_SESSION['user']['ImageCouv'])? 'une photo de votre mariage' : 'Image non disponible pour le moment'; ?>">
+        
+    </figure>
+    <a id="linkDownload" href="<?= $_SESSION['user']['Link'] ?>"><?php echo ($_SESSION['user']['Link']) ? 'Telecharger mes photos' : 'Lien de telechargement indisponible'; ?> </a>    
+    
+    
+    <a id="loginOut" href="/CONTROLLER/loginOut.php">Déconnexion</a>  
+    
+</main>

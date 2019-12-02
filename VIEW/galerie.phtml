@@ -1,0 +1,58 @@
+<main id="galerie">
+    
+    <section class="galerie" >
+        <h6 class="visually-hidden">Galerie d'image</h6>
+        <?php if(isset($_SESSION['admin']) and !empty($_SESSION['admin'])): ?>
+           
+            <button id="btn_sup" class="btn">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+            <button id="btn_add" class="btn">
+                <i class="fas fa-plus"></i>
+            </button>
+           
+            <div id="form_upload" class="hide">
+               <h2>Ajouter des images</h2>
+                <form method="POST" action="upload_images_galerie.php" enctype="multipart/form-data">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="2621440">
+                    <label for="upload_files">jusqu'a 5 fichiers <br/><small>(500ko max par image)</small></label>
+                    <p id="infos_files"></p>
+                    <p id="errors_files"></p>
+                    <ul id="infos_name_files"></ul>
+                    <div id="group_upload">
+                        <input type="file" name="upload_files[]" id="upload_files" multiple accept=".jpg , .jpeg , .png" class="visually-hidden" required >
+                    
+                        <button type="submit" id="submit_add" name="submit_add" class="btn"><i class='fas fa-check'></i></button> 
+                        <span id="uploadImagesGalerie" class="btn floatLeft">Parcourir...</span>
+                    </div>
+                </form>               
+            </div>
+           
+            <form method="POST" action="deleteImages.php" id="form_sup" class="clear" > 
+                <div class="form galerie flex">
+                    <?php aleatoirDisplay($gallery); ?>
+                </div>
+                <input type="submit" class="invisibility" id="submit_sup" name="submit_sup" value="Supprimer">
+            </form>
+
+        <?php else : ?>
+            <div class="galerie flex">
+                <?php aleatoirDisplay($gallery); ?>
+            </div>
+        <?php endif; ?>
+    </section>
+    
+
+    <div id="boxBackground">
+        <div id="lightbox">
+            <i class="fas fa-chevron-circle-left" ></i> 
+           <figure id="containerSlideImage">
+               <img src="#" alt="photo de mariage">
+           </figure>
+           <i class="fas fa-chevron-circle-right"></i>
+            <div id="closingLightbox">&times;</div>
+        </div>
+    </div>
+    
+</main>
+ 

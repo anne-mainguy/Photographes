@@ -1,0 +1,51 @@
+#espacePerso {
+    text-align : center;
+ }
+ 
+ #espacePerso figure {
+     margin : 0 auto 60px;
+     
+     text-align : center;
+ }
+ 
+ #espacePerso h3 {
+     margin : 0 auto 25px;
+     
+     font-size : 3rem;
+     font-style : italic;
+ }
+ 
+ #espacePerso a {
+     text-decoration: none; 
+ }
+ 
+ #linkDownload {
+     color : #838ea2;
+ }
+ 
+ #linkDownload:hover , #linkDownload:focus{
+     color : #ff71ad;
+ }
+ 
+ #loginOut {
+     display : block; 
+     width : 15rem;
+     margin : 3rem auto;
+     padding : .7rem;
+     
+     text-align : center;
+     color : white;
+     
+     border-radius : 50px;
+     
+     background-color : #838ea2;
+     
+     -webkit-transition : .5s;     
+     -o-transition : .5s;     
+     transition : .5s;
+     
+ }
+ 
+ #loginOut:hover, #loginOut:focus {
+     background-color : #ff71ad;
+ }

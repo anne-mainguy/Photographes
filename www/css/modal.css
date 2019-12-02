@@ -1,0 +1,151 @@
+#modal_loginUser {
+    display : none;
+    position: fixed;
+    left : 0;
+    top : 0;
+    width : 100%;
+    height : 100%;
+    z-index : 10;
+    
+    background-color : rgba(0,0,0,.4);
+    
+    overflow : auto;
+}
+
+.modal_content {
+    position: fixed;
+    width : 50vw;
+    min-width : 280px;
+    max-width : 600px;
+    margin : 50vh 50%;
+    padding : 0px 0px 20px;
+
+    color : #838ea2;
+    
+    border-radius: 15px;
+    
+    background-color : rgba(255,255,255,.9);
+    
+    -webkit-transform : translate(-50%, -50%);    
+        -ms-transform : translate(-50%, -50%);   
+            transform : translate(-50%, -50%);
+}
+
+.modal_header {
+    color : white;
+    
+    border-radius: 15px 15px 0 0;
+    
+    background-color : #ff71ad;
+    
+    overflow: hidden;
+}
+
+.modal_header.admin{
+    background : #838ea2;
+}
+
+.modal_header h3 {
+    margin : 30px 0;
+    
+    text-align : center;
+    font-size : 3rem;
+}         
+
+#accessLoginAdmin {
+    position : absolute;
+    width : 30px;
+    height : 30px;
+    left : 7px;
+    top : 7px;
+    
+    font-size : 1.5rem;
+    color : white;
+    
+    border-radius : 50%;
+    border : none;
+    
+    background-color : #838ea2;
+}
+
+.modal_header.admin #accessLoginAdmin {
+    background-color : white;
+    color : #ff71ad;
+}
+
+#accessLoginAdmin .fas {
+    text-align: center;
+    line-height: 25px;
+}
+
+#accessLoginAdmin.admin {
+    opacity: 1;
+}
+
+#accessLoginAdmin.customer {
+    opacity: .5;
+}
+
+#close_modal {
+    position : absolute;
+    right : 12px;
+    top: 2px;
+    
+    font-size : 35px;
+    font-weight: bold;
+    color: #838ea2;
+}
+
+#close_modal:hover , #close_modal:focus{
+    cursor : pointer;
+    color : red;
+}
+
+.modal_header.admin #close_modal{
+    color : #ff71ad;
+}
+
+.modal_body {
+    height : 70%;
+    margin : 30px 20px;
+}
+
+#msgIndicationLogin {
+    text-align : center;
+}
+
+#mess_error_login {
+    color : red;
+    text-align : center;
+}
+
+#formLogin li {
+    margin-bottom : 30px;
+}
+
+#formLogin li input { 
+    height : 4rem;
+    padding-left: 1rem;
+    
+    color : #838ea2;
+    font-family: 'Poppins', sans-serif;
+    font-size : 1.6rem;
+    
+    width : 100%;
+    
+    border : 1px solid #6E788A;
+    border-radius : 30px; 
+    
+    background-color: #c5d3e4;
+}
+
+
+
+
+
+
+
+
+
+
+

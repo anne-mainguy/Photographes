@@ -1,0 +1,53 @@
+#devis figure {
+    margin : 0 auto 60px;
+    
+    text-align : center;
+}
+
+#devis form {
+    min-width : 280px;
+    width : 50%;
+}
+
+#devis li input {
+    display : inline;
+}
+
+#devis #date, #devis #codePromo {
+    width : 180px;
+}
+
+#codePromo {
+    margin : 0;
+    
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#devis .btn {
+    display : inline;
+    
+    margin : 0;
+    padding: .2rem;
+    width : 50px;
+    height : 4rem;
+    
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    
+}
+
+#devis .btn.validated {
+    color : limegreen;
+    
+    border-color: #838ea2;
+    
+    background-color : #838ea2;
+}
+
+.messValidation {
+    margin : .5rem 0;
+    
+    font-size: 1.1rem;
+}
